@@ -55,8 +55,11 @@ COPY --chown=superset:superset superset superset
 
 ENV PATH=/home/superset/superset/bin:$PATH \
     PYTHONPATH=/home/superset/superset/:$PYTHONPATH
-
+    
 USER superset
+
+COPY bq_keys.json /home/superset/
+ENV GOOGLE_APPLICATION_CREDENTIALS bq_keys.json
 
 RUN cd superset/assets \
     && npm ci \
