@@ -59,7 +59,7 @@ ENV PATH=/home/superset/superset/bin:$PATH \
 USER superset
 
 COPY bq_keys.json /home/superset/
-ENV GOOGLE_APPLICATION_CREDENTIALS bq_keys.json
+ENV GOOGLE_APPLICATION_CREDENTIALS /home/superset/bq_keys.json
 
 RUN cd superset/assets \
     && npm ci \
