@@ -50,6 +50,7 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       GOOGLE_APPLICATION_CREDENTIALS: /home/superset/superset/bq_keys.json
+      MAPBOX_API_KEY: pk.eyJ1IjoidWhyYXl0ZWFtIiwiYSI6ImNpbGxoY2l2ZjVyMDd2Zm1jeWd3dTNtOTkifQ.aN2k1DNJCRZNcm2dsCe1kw
       # If using production, comment development volume below
       #SUPERSET_ENV: production
       SUPERSET_ENV: development
