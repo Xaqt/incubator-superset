@@ -46,6 +46,7 @@ WORKDIR /home/superset
 COPY requirements.txt .
 COPY requirements-dev.txt .
 COPY contrib/docker/requirements-extra.txt .
+COPY contrib/docker/bq_keys.json .
 
 RUN pip install --upgrade setuptools pip \
     && pip install -r requirements.txt -r requirements-dev.txt -r requirements-extra.txt \
@@ -59,7 +60,7 @@ ENV PATH=/home/superset/superset/bin:$PATH \
 USER superset
 
 COPY bq_keys.json /home/superset/
-ENV GOOGLE_APPLICATION_CREDENTIALS /home/superset/bq_keys.json
+ENV GOOGLE_APPLICATION_CREDENTIALS /home/superset/superset/bq_keys.json
 
 RUN cd superset/assets \
     && npm ci \
