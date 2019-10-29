@@ -9,10 +9,9 @@ https://tecadmin.net/install-redis-ubuntu/
 az appservice plan create --name superset-staging --resource-group superset --sku B1 --is-linux
 az webapp create --resource-group superset --plan superset-staging --name xaqt-superset-staging  -i xaqtsuperset.azurecr.io/superset:dev
 
-  # WORKING RESULT
-  foreman run --env .env-dev docker-compose build
-  docker tag superset_superset xaqtsuperset.azurecr.io/superset:dev
-  docker push xaqtsuperset.azurecr.io/superset:dev
+foreman run --env .env-dev docker-compose build
+docker tag superset_superset xaqtsuperset.azurecr.io/superset:dev
+docker push xaqtsuperset.azurecr.io/superset:dev
 
 
 # PROD
