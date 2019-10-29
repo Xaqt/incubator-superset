@@ -41,6 +41,10 @@ RUN apt-get install -y vim less postgresql-client redis-tools
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get install -y nodejs
 
+RUN apt-get install redis-server -y
+
+RUN npm install -g pm2
+
 WORKDIR /home/superset
 
 COPY requirements.txt .
@@ -50,7 +54,8 @@ COPY contrib/docker/bq_keys.json .
 
 RUN pip install --upgrade setuptools pip \
     && pip install -r requirements.txt -r requirements-dev.txt -r requirements-extra.txt \
-    && rm -rf /root/.cache/pip
+    && rm -rf /root/.cache/pip && \
+    pip install pybigquery
 
 COPY --chown=superset:superset superset superset
 
@@ -68,9 +73,12 @@ RUN cd superset/assets \
     && rm -rf node_modules
 
 COPY contrib/docker/docker-init.sh .
+COPY contrib/docker/docker-init.sh /docker-init.sh
 COPY contrib/docker/docker-entrypoint.sh /entrypoint.sh
+COPY contrib/docker/superset_config.py /home/superset/superset/superset_config.py
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 HEALTHCHECK CMD ["curl", "-f", "http://localhost:8088/health"]
 
-EXPOSE 8088
+EXPOSE 8088 2222

@@ -38,6 +38,7 @@ app.db
 apache_superset.egg-info/
 changelog.sh
 dist
+bq_keys.json
 dump.rdb
 env
 venv*
@@ -86,3 +87,6 @@ apache-superset-*.tar.gz*
 
 # Translation binaries
 messages.mo
+
+.env
+.env*

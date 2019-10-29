@@ -1,0 +1,24 @@
+
+http://vermegi.github.io/azure/appservice/docker/storage/2019/01/16/using-cloud-storage-for-docker-in-app-service/
+https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal
+https://tecadmin.net/install-redis-ubuntu/
+
+# DEV
+
+az appservice plan create --name superset-staging --resource-group superset --sku B1 --is-linux
+az webapp create --resource-group superset --plan superset-staging --name xaqt-superset-staging  -i xaqtsuperset.azurecr.io/superset:dev
+
+  # WORKING RESULT
+  foreman run --env .env-dev docker-compose build
+  docker tag superset_superset xaqtsuperset.azurecr.io/superset:dev
+  docker push xaqtsuperset.azurecr.io/superset:dev
+
+
+# PROD
+
+az appservice plan create --name superset-prod --resource-group superset --sku B1 --is-linux
+az webapp create --resource-group superset --plan superset-prod --name xaqt-superset-prod -i xaqtsuperset.azurecr.io/superset:prod
+
+foreman run --env .env-prod dev docker-compose build
+docker tag superset_superset xaqtsuperset.azurecr.io/superset:dev
+docker push xaqtsuperset.azurecr.io/superset:dev
