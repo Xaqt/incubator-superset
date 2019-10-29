@@ -36,9 +36,8 @@ logger = logging.getLogger("alembic.env")
 # from myapp import mymodel
 from flask import current_app
 
-config.set_main_option(
-    "sqlalchemy.url", current_app.config.get("SQLALCHEMY_DATABASE_URI")
-)
+db_url_escaped = current_app.config.get('SQLALCHEMY_DATABASE_URI').replace('%', '%%')
+config.set_main_option('sqlalchemy.url', db_url_escaped)
 target_metadata = Base.metadata  # pylint: disable=no-member
 
 # other values from the config, defined by the needs of env.py,
