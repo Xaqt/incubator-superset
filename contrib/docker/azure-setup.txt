@@ -5,6 +5,7 @@ https://tecadmin.net/install-redis-ubuntu/
 
 # DEV
 
+
 az appservice plan create --name superset-staging --resource-group superset --sku B1 --is-linux
 az webapp create --resource-group superset --plan superset-staging --name xaqt-superset-staging  -i xaqtsuperset.azurecr.io/superset:dev
 
