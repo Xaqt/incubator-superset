@@ -22,3 +22,10 @@ az webapp create --resource-group superset --plan superset-prod --name xaqt-supe
 foreman run --env .env-prod dev docker-compose build
 docker tag superset_superset xaqtsuperset.azurecr.io/superset:dev
 docker push xaqtsuperset.azurecr.io/superset:dev
+
+
+client
+f01ce48f-6f13-4507-ae43-e90df3033ab7
+
+secret
+Sso9A4l6EeaXQd7fTDcdSfavu:tAJ-:=
